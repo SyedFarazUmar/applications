@@ -1,0 +1,93 @@
+global:
+  namespace: oncall
+  mongodb:
+    uri: "mongodb://mongodb:27017"
+    dbName: "oncall_db"
+  imagePullSecrets: []
+  # - name: my-registry-secret
+
+frontend:
+  replicaCount: 2
+  image:
+    repository: oncall-on-demand/frontend
+    tag: "1.0.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 5000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+  env:
+    secretKey: "change-me-in-production"
+    flaskDebug: "false"
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+calculator:
+  replicaCount: 2
+  image:
+    repository: oncall-on-demand/calculator
+    tag: "1.0.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 5001
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+mongodb:
+  replicaCount: 1
+  image:
+    repository: oncall-on-demand/mongodb
+    tag: "1.0.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 27017
+  storage:
+    size: 5Gi
+    storageClassName: ""
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+  host: oncall-on-demand.com
+  tls: []
+  # - secretName: oncall-tls
+  #   hosts:
+  #     - oncall-on-demand.com
+
+networkPolicy:
+  enabled: true

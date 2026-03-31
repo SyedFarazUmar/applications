@@ -1,0 +1,55 @@
+services:
+  mongodb:
+    build:
+      context: ./src/mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oncall-net
+
+  frontend:
+    build:
+      context: ./src/frontend
+    ports:
+      - "80:5000"
+      - "5000:5000"
+    environment:
+      MONGO_URI: "mongodb://mongodb:27017"
+      DB_NAME: "oncall_db"
+      CALCULATOR_URL: "http://calculator:5001"
+      SECRET_KEY: "local-dev-secret-key"
+      FLASK_DEBUG: "true"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - oncall-net
+
+  calculator:
+    build:
+      context: ./src/calculator
+    ports:
+      - "5001:5001"
+    environment:
+      MONGO_URI: "mongodb://mongodb:27017"
+      DB_NAME: "oncall_db"
+      FLASK_DEBUG: "true"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - oncall-net
+
+volumes:
+  mongo-data:
+
+networks:
+  oncall-net:
+    driver: bridge

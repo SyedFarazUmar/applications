@@ -1,0 +1,139 @@
+body {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+}
+
+main {
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Top bar with username and logout — above navbar, right-aligned */
+.user-topbar {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #ced4da;
+}
+
+.user-topbar > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.5rem 1.5rem;
+}
+
+.topbar-username {
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.topbar-logout-btn {
+    font-size: 1.5rem !important;
+    padding: 0.4rem 1.5rem !important;
+}
+
+/* Navbar */
+.navbar {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-menu-link {
+    font-size: 1.15rem;
+    opacity: 0.85;
+}
+
+.nav-menu-link:hover {
+    opacity: 1;
+}
+
+/* Dashboard two-column layout — always side by side */
+.dashboard-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.dashboard-col {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Cards */
+.card {
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    padding: 1rem 1.5rem;
+}
+
+.card-header h5 {
+    font-size: 1.3rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Forms */
+.form-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.form-control {
+    font-size: 1.1rem;
+    padding: 0.6rem 1rem;
+}
+
+.form-control-lg {
+    font-size: 1.15rem;
+    padding: 0.75rem 1rem;
+}
+
+/* Tables */
+.table {
+    font-size: 1.05rem;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+/* Typography */
+.display-4 {
+    font-size: 3rem;
+}
+
+.badge {
+    font-size: 0.95rem;
+    padding: 0.5em 0.85em;
+}
+
+/* Buttons */
+.btn {
+    font-size: 1.05rem;
+}
+
+.btn-lg {
+    font-size: 1.15rem;
+    padding: 0.7rem 1.5rem;
+}
+
+.alert {
+    font-size: 1.05rem;
+}
