@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  namespace: {{ include "oncall.namespace" . }}
+  labels:
+    {{- include "oncall.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mongodb
+spec:
+  type: {{ .Values.mongodb.service.type }}
+  ports:
+    - port: {{ .Values.mongodb.service.port }}
+      targetPort: 27017
+      protocol: TCP
+      name: mongo
+  selector:
+    {{- include "oncall.selectorLabels" (dict "name" "mongodb" "release" .Release.Name) | nindent 4 }}

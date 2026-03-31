@@ -1,0 +1,31 @@
+body {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.display-4 {
+    font-size: 3rem;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.7em;
+}

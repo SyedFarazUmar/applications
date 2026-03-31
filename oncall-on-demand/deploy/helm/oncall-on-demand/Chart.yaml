@@ -1,0 +1,8 @@
+apiVersion: v2
+name: oncall-on-demand
+description: A microservices application for managing on-call schedules
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+maintainers:
+  - name: oncall-team
